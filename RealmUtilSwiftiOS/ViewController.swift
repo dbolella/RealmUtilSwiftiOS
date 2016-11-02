@@ -9,15 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var sampleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        let profile = ["name":"Danny","age":27] as [String : Any]
+        
+        let rP :realmPerson = realmPerson()
+        rP.add(from: profile)
+        let result = rP.getFirstPerson()
+        sampleLabel.text = "Success!  \(result.name) is \(result.age) years old"
+        
+        let util : realmUtil = realmUtil()
+        util.printRealm()
     }
 
 
